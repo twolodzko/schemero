@@ -1,0 +1,11 @@
+#!/usr/bin/env escript
+%% -*- erlang -*-
+%%! -pa ebin +pc unicode
+
+main([]) ->
+    {ok, Env} = scheme:base_envir(),
+    Pid = reader:from_stdin(),
+    main:repl(Pid, Env);
+main(Args) ->
+    {ok, Env} = scheme:base_envir(),
+    main:eval_files(Args, Env).
